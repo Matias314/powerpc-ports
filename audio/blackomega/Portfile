@@ -30,6 +30,9 @@ checksums           ${distname}${extract.suffix} \
 
 cmake.out_of_source no
 
+patch.pre_args-replace -p0 -p1
+patchfiles-append leopard-coreaudio.patch
+
 post-patch {
     reinplace "s|Qt6|Qt4|" ${worksrcpath}/CMakeLists.txt
 
