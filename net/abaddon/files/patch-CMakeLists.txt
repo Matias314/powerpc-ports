@@ -13,7 +13,7 @@
      target_compile_definitions(abaddon PRIVATE WITH_QRLOGIN)
  endif ()
  
-@@ -137,13 +133,11 @@
+@@ -137,13 +133,12 @@
  endif ()
  
  if (USE_KEYCHAIN)
@@ -26,6 +26,7 @@
 +    target_link_libraries(abaddon keychain)
 +    if (APPLE)
 +        target_link_libraries(abaddon "-framework Security")
++        target_link_libraries(abaddon "-framework CoreServices")
      endif ()
 +    target_compile_definitions(abaddon PRIVATE WITH_KEYCHAIN)
  endif ()

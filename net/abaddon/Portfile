@@ -99,10 +99,10 @@ configure.args-append \
                     -DUSE_LIBHANDY=ON
 
 # FIXME: coreaudio is broken atm for 10.4–10.5.
-if {${os.platform} eq "darwin" && ${os.major} < 10} {
-    configure.args-replace \
-                    -DENABLE_NOTIFICATION_SOUNDS=ON -DENABLE_NOTIFICATION_SOUNDS=OFF
-}
+#if {${os.platform} eq "darwin" && ${os.major} < 10} {
+#    configure.args-replace \
+#                    -DENABLE_NOTIFICATION_SOUNDS=ON -DENABLE_NOTIFICATION_SOUNDS=OFF
+#}
 
 # FIXME: https://github.com/uowuo/abaddon/issues/360
 if {[string match *gcc* ${configure.compiler}]} {
@@ -168,6 +168,8 @@ variant voice description "Enable voice suppport" {
     configure.args-replace \
                     -DENABLE_RNNOISE=OFF -DENABLE_RNNOISE=ON \
                     -DENABLE_VOICE=OFF -DENABLE_VOICE=ON
+    patchfiles-append \
+                    patch-miniaudio-leopard.txt
 }
 
 default_variants    +keychain +qr
